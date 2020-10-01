@@ -1,0 +1,98 @@
+<mvc:View controllerName="NSTickelia.Tickelia.controller.MainView" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    displayBlock="true" 
+    xmlns:l="sap.ui.layout" 
+    xmlns:u="sap.ui.unified" 
+    xmlns:core="sap.ui.core" 
+    xmlns="sap.m" 
+    class="viewPadding">
+	<Shell id="shell">
+		<App id="app" width="100%">
+			<pages>
+				<Page id="page" title="{i18n>title}" >
+					<content>
+                        <OverflowToolbar id="otb1">
+                            <Label text="{i18n>Bukrs}"/>
+                                <layoutData>
+                                    <OverflowToolbarLayoutData shrinkable="true" minWidth="100px"/>
+                                </layoutData>
+                            <Label/>
+                            <Input id="IDBukrs" width="10%" placeholder="Input" required="true">
+                                <layoutData>
+                                    <OverflowToolbarLayoutData shrinkable="true" minWidth="150px"/>
+                                </layoutData>
+                            </Input>
+                        </OverflowToolbar>
+						<OverflowToolbar id="otb2">
+							<Label id="AttachFile" text="{i18n>FileLabel}"/>
+							<u:FileUploader id="AttachUploader" name="secondFileUploader" width="700px" fileType="CSV,XLS,XLSX" uploadUrl="upload/" sameFilenameAllowed="false" tooltip="Upload your file to the local server" uploadComplete="handleUploadComplete"/>
+						</OverflowToolbar>
+                        <OverflowToolbar id="otb3">
+                        	<Button id="Upload" press="OnAttachUploadCSV" text="UploadCSV" type="Emphasized"/>
+							<Button id="UploadXLS" press="OnAttachUploadXLS" text="UploadXLS" type="Emphasized"/>
+						</OverflowToolbar>
+						<Panel id="panel1" 
+                            expandable="true" 
+                            expanded="true" 
+                            width="auto" 
+                            class="sapUiResponsiveMargin">
+							<headerToolbar>
+								<OverflowToolbar style="Clear">
+									<Title text="{i18n>SourceData}"/>
+									<ToolbarSpacer/>
+									<Button icon="sap-icon://settings"/>
+									<Button icon="sap-icon://drop-down-list"/>
+									<SearchField placeholder="Filter" value="{ui>/globalFilter}" search="filterGlobally" width="15rem"/>
+								</OverflowToolbar>
+							</headerToolbar>
+							<ScrollContainer height="300px" vertical="true">
+								<content>
+									<!--<Table id="idOrigDataTable" mode="SingleSelectMaster"/>-->
+									<Table id="idOrigDataTable" items="{ path: '/'}" alternateRowColors="true" mode="SingleSelectMaster" sticky="ColumnHeaders" selectionChange="onSelectionChange">
+										<infoToolbar>
+											<Toolbar>
+												<Text text="Info Toolbar"/>
+											</Toolbar>
+										</infoToolbar>
+										<columns/>
+										<items>
+											<ColumnListItem/>
+										</items>
+									</Table>
+								</content>
+							</ScrollContainer>
+						</Panel>
+						<Button id="processFile" press="OnProcessFile" text="Procesar Fichero Cargado" type="Emphasized"/>
+						<Panel id="panel2" expandable="true" expanded="true" width="auto" class="sapUiResponsiveMargin">
+							<headerToolbar>
+								<OverflowToolbar style="Clear">
+									<Title text="{i18n>ProcessedData}"/>
+									<ToolbarSpacer/>
+                                    <Button icon="sap-icon://download-from-cloud" press="onExcelDataExportV3" tooltip="Export Formatting Example V3"/>
+                                    <Button icon="sap-icon://excel-attachment" press="onExcelDataExportV2" tooltip="Export Formatting Example"/>
+									<Button	icon="sap-icon://download" press="onExcelDataExport" />
+								</OverflowToolbar>
+							</headerToolbar>
+							<ScrollContainer height="300px" vertical="true">
+								<content>
+									<!--<Table id="idOrigDataTable" mode="SingleSelectMaster"/>-->
+									<Table id="idProcDT" items="{ path: '/procDT'}" alternateRowColors="true" mode="SingleSelectMaster" sticky="ColumnHeaders" selectionChange="onSelectionChange">
+										<infoToolbar>
+											<Toolbar>
+												<Text text="Info Toolbar"/>
+											</Toolbar>
+										</infoToolbar>
+										<columns/>
+										<items>
+											<ColumnListItem/>
+										</items>
+									</Table>
+								</content>
+							</ScrollContainer>
+						</Panel>
+					</content>
+				</Page>
+			</pages>
+        </App>
+	</Shell>
+</mvc:View>

@@ -1,0 +1,25 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Tickelia-Tickelia",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/tickelia-approuter/node_modules/@sap/html5-repo-mock/index.js",
+      "args": [
+        "--standalone",
+        "/NSTickeliaTickelia/index.html",
+        "--ui5",
+        "{\"version\":\".\"}"
+      ],
+      "cwd": "${workspaceFolder}/Tickelia",
+      "env": {
+        "PORT": "6004",
+        "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
+        "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/Tickelia/Tickelia\"}"
+      },
+      "envFile": "${workspaceFolder}/Tickelia/.env1",
+      "preLaunchTask": "Build Tickelia"
+    }
+  ]
+}
